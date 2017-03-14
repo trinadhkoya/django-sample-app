@@ -19,4 +19,4 @@ the above method is little lengthy,if we have another simple strategy that is no
 class TreasureForm(forms.ModelForm):
     class Meta:
         model=Treasure
-        fields=['name','value','location','img_url','material']
+        fields=['name','value','location','img_url','material','user']

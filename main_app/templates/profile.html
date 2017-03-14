@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h1>{{ username }}</h1>
+    <div class="col-md-4">
+        {% for treasure in treasures %}
+
+            <div class="panel panel-default">
+                <a href="/{{ treasure.id }}/">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ treasure.name }}</h3>
+                <img src="{{ treasure.img_url }}" height="100px" width="100px">
+                <a class="" href="/user/{{ treasure.user.username }}"> BY {{ treasure.user.username }}</a></a>
+            </div>
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+{% endblock %}

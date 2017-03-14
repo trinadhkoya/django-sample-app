@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from .models import Treasure
 from .forms import TreasureForm
@@ -8,8 +9,8 @@ from django.http import HttpResponseRedirect
 
 def index(request):
     treasures = Treasure.objects.all()
-    form=TreasureForm()#an empty form to display in home page.we can check conditions later (if logged in or not)
-    return render(request, 'index.html', {'treasures': treasures,'form':form})
+    form = TreasureForm()  # an empty form to display in home page.we can check conditions later (if logged in or not)
+    return render(request, 'index.html', {'treasures': treasures, 'form': form})
 
 
 def detail(request, treasure_id):
@@ -32,8 +33,22 @@ def detail(request, treasure_id):
 we can do the same stuff in simple steps using
 '''
 
+
 def post_treasure(request):
-    form=TreasureForm(request.POST)
+    form = TreasureForm(request.POST)
     if form.is_valid():
-        form.save(commit=True)
+        treasure = form.save(commit=False)
+        treasure.user = request.user
+        print(treasure.user.id)
+        treasure.save()
     return HttpResponseRedirect("/")
+
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    treasure = Treasure.objects.filter(user=user)
+    context = {
+        'treasures': treasure, 'username': username
+    }
+
+    return render(request, 'profile.html',context)
