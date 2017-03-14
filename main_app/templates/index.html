@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TreasureGram</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<nav class="navbar  navbar-default navbar-static-top text-center">
+    <a href="/">
+        <img src="{% static 'images/logo.png' %}" alt="helpouts" height="100" width="100">
+    </a>
+
+</nav>
+<main class="container" role="main">
+
+    <div class="row">
+        {% for treasure in treasures %}
+            <div class="col-md-4">
+                <img src="{{ treasure.img_url }}" height="100" width="100">
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+                <div class="row">
+
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+</main>
+
+</body>
+</html>
