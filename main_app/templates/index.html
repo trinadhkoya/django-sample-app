@@ -1,37 +1,32 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
+{% block content %}
+    <div class="row  panel panel-default ">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TreasureGram</title>
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
-
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-<nav class="navbar  navbar-default navbar-static-top text-center">
-    <a href="/">
-        <img src="{% static 'images/logo.png' %}" alt="helpouts" height="100" width="100">
-    </a>
-
-</nav>
-<main class="container" role="main">
-
-    <div class="row">
         {% for treasure in treasures %}
-            <div class="col-md-4">
-                <img src="{{ treasure.img_url }}" height="100" width="100">
+            <div class="col-md-4 panel-heading">
+                <div class="panel-title">
+                    <h4>{{ treasure.name }}</h4></div>
+                <a href="{{ treasure.id }}/"> <img src="{{ treasure.img_url }}" height="110" width="150">
+                </a>
+
             </div>
             {% if forloop.counter|divisibleby:3 %}
-                <div class="row">
-
+                <div class="row mtop ">
                 </div>
             {% endif %}
+
+
         {% endfor %}
+
     </div>
+    <div class="row">
+    <form name="" method="post" action="post_url/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="save">
 
-</main>
+    </form>
 
-</body>
-</html>
+    </div>
+{% endblock %}

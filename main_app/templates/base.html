@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TreasureGram</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top text-left text-center bg">
+    <a href="/">
+        <img src="{% static 'images/logo.png' %}" alt="" height="100" width="120">
+    </a>
+
+</nav>
+
+<main class="container" role="main">
+    {% block content %}
+    {% endblock %}
+
+
+</main>
+
+</body>
+</html>
