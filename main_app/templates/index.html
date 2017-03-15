@@ -10,6 +10,11 @@
                 <a href="{{ treasure.id }}/"> <img src="{{ treasure.img_url }}" height="110" width="150">
                 </a>
 
+                <button type="button" class="btn btn-danger glyphicon glyphicon-heart" data-id="{{ treasure.id }}">
+                    {% if treasure.likes > 0 %}{{ treasure.likes }}
+                    {% endif %}
+                </button>
+
             </div>
             {% if forloop.counter|divisibleby:3 %}
                 <div class="row mtop ">
@@ -17,16 +22,19 @@
             {% endif %}
 
 
+
+
         {% endfor %}
 
     </div>
     <div class="row">
-    <form name="" method="post" action="post_url/">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="save">
+        <form name="" method="post" action="post_url/">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="save">
 
-    </form>
+        </form>
 
     </div>
+
 {% endblock %}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2503157206">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="treasuregram.sqlite3" uuid="b3ea8883-4476-4e7d-a85f-6f95f57d1a11">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>

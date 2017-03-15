@@ -7,4 +7,10 @@
     <p>{{ treasure.location }}</p>
     <p>{{ treasure.value }}</p>
     <p>{{ treasure.material }}</p>
+    {#    adding like button #}
+    <button type="button" class="btn btn-danger glyphicon glyphicon-heart" data-id="{{ treasure.id }}">
+        {% if treasure.likes > 0 %}{{ treasure.likes }}
+        {% endif %}
+    </button>
+
 {% endblock %}
