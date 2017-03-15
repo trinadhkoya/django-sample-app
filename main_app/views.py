@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from .models import Treasure
-from .forms import TreasureForm
+from .forms import TreasureForm, LoginForm
 from django.http import HttpResponseRedirect
+from django.contrib.auth import login as auth_login, authenticate, logout
 
 
 # Create your views here.
@@ -51,4 +52,32 @@ def profile(request, username):
         'treasures': treasure, 'username': username
     }
 
-    return render(request, 'profile.html',context)
+    return render(request, 'profile.html', context)
+
+
+def login(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            u_name = login_form.cleaned_data['username']
+            u_password = login_form.cleaned_data['password']
+            user = authenticate(username=u_name, password=u_password)
+            # checking for the user existence and active state
+            if user is not None:
+                if user.is_active:
+                    auth_login(request, user)
+                    return HttpResponseRedirect('/')
+                else:
+                    print("User is Not Active")
+            else:
+                print("Invalid Credentials")
+
+
+    else:
+        login_form = LoginForm()
+        return render(request, 'login.html', {'login_form': login_form})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/")
