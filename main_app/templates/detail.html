@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
-
-    <img src="{{ treasure.img_url }}" height="100" width="150">
-    <p> {{ treasure.name }}</p>
+    <div class="col-md-4 detail">
+    <img src="{{ treasure.img_url }}" class="img-circle" height="100" width="150">
+    <h4> {{ treasure.name }}</h4>
     <p>{{ treasure.location }}</p>
     <p>{{ treasure.value }}</p>
-    <p>{{ treasure.material }}</p>
+    <p class="email">{{ treasure.material }}</p>
     {#    adding like button #}
     <button type="button" class="btn btn-danger glyphicon glyphicon-heart" data-id="{{ treasure.id }}">
-        {% if treasure.likes > 0 %}{{ treasure.likes }}
+        {% if treasure.likes > 0 %}<p style="font-weight: 500">{{ treasure.likes }}</p>
         {% endif %}
     </button>
+    </div>
 
 {% endblock %}

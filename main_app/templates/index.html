@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
-    <div class="row  panel panel-default ">
+        <div class="row  panel panel-default ">
 
-        {% for treasure in treasures %}
-            <div class="col-md-4 panel-heading">
-                <div class="panel-title">
-                    <h4>{{ treasure.name }}</h4></div>
-                <a href="{{ treasure.id }}/"> <img src="{{ treasure.img_url }}" height="110" width="150">
-                </a>
+            {% for treasure in treasures %}
 
-                <button type="button" class="btn btn-danger glyphicon glyphicon-heart" data-id="{{ treasure.id }}">
-                    {% if treasure.likes > 0 %}{{ treasure.likes }}
-                    {% endif %}
-                </button>
+                    <div class="col-md-4 panel-heading" style="width: 32.333%;margin: 5px 5px 5px 5px">
+                        <div class="panel-title">
+                            <h4>{{ treasure.name }}</h4></div>
+                        <a href="{{ treasure.id }}/"> <img src="{{ treasure.img_url }}" height="110" width="150"
+                                                           class="img-circle">
+                        </a>
 
-            </div>
-            {% if forloop.counter|divisibleby:3 %}
-                <div class="row mtop ">
-                </div>
-            {% endif %}
+                        <button type="button" class="btn btn-danger glyphicon glyphicon-thumbs-up"
+                                data-id="{{ treasure.id }}">
+                            {% if treasure.likes > 0 %}{{ treasure.likes }}
+                            {% endif %}
+                        </button>
+
+                    </div>
+                {% if forloop.counter|divisibleby:3 %}
+                    <div class="row mtop ">
+                    </div>
+                {% endif %}
 
 
 
 
-        {% endfor %}
+            {% endfor %}
 
-    </div>
-    <div class="row">
-        <form name="" method="post" action="post_url/">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="save">
+        </div>
+        <div class="row">
+            <form name="" method="post" action="post_url/">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="save">
 
-        </form>
+            </form>
 
-    </div>
+        </div>
 
 {% endblock %}
